@@ -1,0 +1,30 @@
+name: Daily Shorts Automation
+
+on:
+  schedule:
+    # This runs at 09:00 AM UTC every day
+    - cron: '0 9 * * *'
+  workflow_dispatch: # Allows you to run it manually for testing
+
+jobs:
+  run-automation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run automation script
+        env:
+          # Map your secrets here (set these in GitHub repo settings)
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          # ... add other keys as needed
+        run: node index.js
