@@ -1,0 +1,18 @@
+{
+  "name": "shorts-automation",
+  "version": "1.0.0",
+  "description": "Automated pipeline: research topic -> script -> voice -> captions -> assemble -> thumbnail -> upload to YouTube Shorts / Instagram Reels / Facebook Reels",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "research": "node src/research.js",
+    "test:script": "node -e \"import('./src/script.js').then(m=>m.generateScript('a weird space fact').then(console.log))\""
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "node-fetch": "^3.3.2",
+    "googleapis": "^140.0.1",
+    "sharp": "^0.33.4"
+  }
+}
