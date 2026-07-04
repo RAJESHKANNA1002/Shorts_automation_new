@@ -23,11 +23,12 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install FFmpeg
-        run: sudo apt-get update && sudo apt-get install -y ffmpeg
-
-      - name: Install edge-tts
-        run: pip install edge-tts
+      - name: Install System and Python dependencies
+        run: |
+          # Install FFmpeg for video processing
+          sudo apt-get update && sudo apt-get install -y ffmpeg
+          # Install Python libraries required by your src/ scripts
+          pip install edge-tts faster-whisper
 
       - name: Install Node dependencies
         run: npm install
